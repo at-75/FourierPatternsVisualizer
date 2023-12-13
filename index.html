@@ -4,18 +4,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-  <title>Your p5.js Project</title>
+  <title>Fourier Series Patterns</title>
 </head>
 <body>
   <script>
-    // Your p5.js code here
+    total_vec=4
+    vec__angles=[]
+    vec__lengths=[]
     function setup() {
-      createCanvas(400, 400);
+      createCanvas(1000, 1000);
       background(255);
+      button = createButton('Random Visualization');
+      button.position(200, 500);
+      button.mousePressed(random_vec);
     }
-
+    function random_vec(){
+      window["total_vec"] =floor(random(1,50));
+      window["vec__lengths"]=[];
+      window["vec__angles"]=[];
+      for(i=0;i<total_vec;i++){
+        window["vec__angles"].push(floor(random(0,360)));
+      }
+      for(i=0;i<total_vec;i++){
+        window["vec__lengths"].push((random(0,10)));
+      }
+    }
     function draw() {
-      // Your drawing code here
+      line(10,10,50,50)
+      console.log(total_vec);
+      console.log(vec__angles.length);
     }
   </script>
 </body>
