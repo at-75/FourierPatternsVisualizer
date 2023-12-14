@@ -8,37 +8,45 @@
 </head>
 <body>
   <script>
-    total_vec=4
-    vec__angles=[]
-    vec__lengths=[]
-    vec__rates=[]
+    total_vec=1
+    vec__angles=[0]
+    vec__lengths=[10]
+    vec__rates=[0.1]
+    tracing_points=[]
     originX=200;
     originY=200;
+    trace_individual_cirles=false
     function setup() {
       createCanvas(1000, 1000);
       background(255);
       button = createButton('Random Visualization');
       button.position(200, 500);
       button.mousePressed(random_vec);
+      button = createButton('Trace Circles');
+      button.position(350, 500);
+      button.mousePressed(change_tracing_circles);
+      
+      
     }
     function random_vec(){
-      window["total_vec"] =floor(random(1,10));
+      window["total_vec"] =floor(random(1,100));
       window["vec__lengths"]=[];
       window["vec__angles"]=[];
       for(i=0;i<total_vec;i++){
         window["vec__angles"].push(floor(random(0,360)));
       }
       for(i=0;i<total_vec;i++){
-        window["vec__lengths"].push((random(0,100)));
+        window["vec__lengths"].push((random(0,10)));
       }
       for(i=0;i<total_vec;i++){
-        window["vec__rates"].push((random(0,0.01)));
+        window["vec__rates"].push((random(0,0.1)));
       }
+      tracing_points=[]
       clear()
     }
     function increment_angles(){
       for(i=0;i<total_vec;i++){
-        vec__angles[i]+=vec__rates[i];
+        window["vec__angles"][i]+=vec__rates[i];
       }
     }
     function draw_recursive_lines(originx,originy,vec){
@@ -47,10 +55,33 @@
       line_Y_end = originy+vec__lengths[vec-1]*cos(vec__angles[vec-1]);
       line(originx,originy,line_X_end,line_Y_end);
       draw_recursive_lines(line_X_end,line_Y_end,vec-1);
+      if(vec==1) tracing_points.push({"x":line_X_end,"y":line_Y_end});
+
+    }
+    function draw_recursive_lines_show_circles(originx,originy,vec){
+      if(vec<1) return
+      line_X_end = originx+vec__lengths[vec-1]*sin(vec__angles[vec-1]);
+      line_Y_end = originy+vec__lengths[vec-1]*cos(vec__angles[vec-1]);
+      line(originx,originy,line_X_end,line_Y_end);
+      tracing_points.push({"x":line_X_end,"y":line_Y_end});
+      draw_recursive_lines(line_X_end,line_Y_end,vec-1);
+    }
+    function draw_tracing_points(){
+      for(i=0;i<tracing_points.length;i++){
+        ellipse(tracing_points[i]["x"],tracing_points[i]["y"],0.1,0.1);
+      }
+    }
+    function change_tracing_circles(){
+      window["trace_individual_cirles"]=window["trace_individual_cirles"] ? false:true;
+      random_vec();
     }
     function draw() {
-      draw_recursive_lines(originX,originY,total_vec);
+      background(255);
+      if(trace_individual_cirles) draw_recursive_lines(originX,originY,total_vec);
+      else draw_recursive_lines_show_circles(originX,originY,total_vec);
       increment_angles();
+      draw_tracing_points();
+    
     }
   </script>
 </body>
