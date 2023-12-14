@@ -12,8 +12,8 @@
     vec__angles=[]
     vec__lengths=[]
     vec__rates=[]
-    originX=500;
-    originY=500;
+    originX=200;
+    originY=200;
     function setup() {
       createCanvas(1000, 1000);
       background(255);
@@ -29,23 +29,28 @@
         window["vec__angles"].push(floor(random(0,360)));
       }
       for(i=0;i<total_vec;i++){
-        window["vec__lengths"].push((random(0,10)));
+        window["vec__lengths"].push((random(0,100)));
       }
       for(i=0;i<total_vec;i++){
-        window["vec__rates"].push((random(0,0.1)));
+        window["vec__rates"].push((random(0,0.01)));
       }
       clear()
     }
+    function increment_angles(){
+      for(i=0;i<total_vec;i++){
+        vec__angles[i]+=vec__rates[i];
+      }
+    }
     function draw_recursive_lines(originx,originy,vec){
       if(vec<1) return
-      line_X_end = vec__lengths[vec-1]*sin(vec__angles[vec-1]);
-      line_Y_end = vec__lengths[vec-1]*cos(vec__angles[vec-1]);
+      line_X_end = originx+vec__lengths[vec-1]*sin(vec__angles[vec-1]);
+      line_Y_end = originy+vec__lengths[vec-1]*cos(vec__angles[vec-1]);
       line(originx,originy,line_X_end,line_Y_end);
       draw_recursive_lines(line_X_end,line_Y_end,vec-1);
     }
     function draw() {
       draw_recursive_lines(originX,originY,total_vec);
-
+      increment_angles();
     }
   </script>
 </body>
