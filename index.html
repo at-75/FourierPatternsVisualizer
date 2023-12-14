@@ -13,17 +13,17 @@
     vec__lengths=[10]
     vec__rates=[0.1]
     tracing_points=[]
-    originX=200;
-    originY=200;
+    originX=350;
+    originY=350;
     trace_individual_cirles=false
     function setup() {
-      createCanvas(1000, 1000);
+      createCanvas(700, 700);
       background(255);
       button = createButton('Random Visualization');
-      button.position(200, 500);
+      button.position(200, 720);
       button.mousePressed(random_vec);
       button = createButton('Trace Circles');
-      button.position(350, 500);
+      button.position(350, 720);
       button.mousePressed(change_tracing_circles);
       
       
@@ -36,7 +36,7 @@
         window["vec__angles"].push(floor(random(0,360)));
       }
       for(i=0;i<total_vec;i++){
-        window["vec__lengths"].push((random(10,30)));
+        window["vec__lengths"].push((random(10,20)));
       }
       for(i=0;i<total_vec;i++){
         window["vec__rates"].push((random(0,0.1)));
@@ -62,8 +62,8 @@
       if(vec<1) return
       line_X_end = originx+vec__lengths[vec-1]*sin(vec__angles[vec-1]);
       line_Y_end = originy+vec__lengths[vec-1]*cos(vec__angles[vec-1]);
-      line(originx,originy,line_X_end,line_Y_end);
       tracing_points.push({"x":line_X_end,"y":line_Y_end});
+      line(originx,originy,line_X_end,line_Y_end);
       draw_recursive_lines(line_X_end,line_Y_end,vec-1);
     }
     function draw_tracing_points(){
