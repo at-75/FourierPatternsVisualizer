@@ -29,17 +29,17 @@ function setup() {
 }
 
 function random_vec() {
-    window["total_vec"] = floor(random(1, 100));
+    window["total_vec"] = floor(random(1, 30));
     window["vec__lengths"] = [];
     window["vec__angles"] = [];
     for (i = 0; i < total_vec; i++) {
         window["vec__angles"].push(floor(random(0, 360)));
     }
     for (i = 0; i < total_vec; i++) {
-        window["vec__lengths"].push((random(10, 20)));
+        window["vec__lengths"].push((random(10, 30)));
     }
     for (i = 0; i < total_vec; i++) {
-        window["vec__rates"].push((random(0, 1)));
+        window["vec__rates"].push((random(0, 0.2)));
     }
     tracing_points = []
     clear()
@@ -85,8 +85,10 @@ function draw_tracing_points() {
     let interColor = lerpColor(color(0, 0, 255), color(255, 0, 0), i / (tracing_points.length - 1));
     stroke(interColor);
      // Adjust the stroke weight based on the position in the array
-    let weight = map(i, 0, tracing_points.length - 1, 0, 1);
-    strokeWeight(weight);
+    let weight = i / (tracing_points.length - 1) * 1; // You can adjust the multiplier for the desired range
+    console.log(weight)
+    strokeWeight(weight);    
+
     vertex(tracing_points[i].x, tracing_points[i].y);
   }
   endShape();
