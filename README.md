@@ -1,5 +1,5 @@
 # FourierPatternsVisualizer
-Generates interesting random pattern from Fourier Vectors
+Generates interesting random patterns from Fourier Vectors
 
 Weblink : https://at-75.github.io/FourierPatternsVisualizer/
 
