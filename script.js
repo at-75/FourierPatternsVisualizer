@@ -39,7 +39,7 @@ function random_vec() {
         window["vec__lengths"].push((random(10, 20)));
     }
     for (i = 0; i < total_vec; i++) {
-        window["vec__rates"].push((random(0, 0.1)));
+        window["vec__rates"].push((random(0, 1)));
     }
     tracing_points = []
     clear()
@@ -75,14 +75,22 @@ function draw_recursive_lines_show_circles(originx, originy, vec) {
     line(originx, originy, line_X_end, line_Y_end);
     draw_recursive_lines(line_X_end, line_Y_end, vec - 1);
 }
-
+function  convertToDegrees(degrees){
+    return (degrees * Math.PI) / 180;
+}
 function draw_tracing_points() {
-    noStroke();
-
-    for (i = 0; i < tracing_points.length; i++) {
-        fill(250, 250, 0);
-        ellipse(tracing_points[i]["x"], tracing_points[i]["y"], 2, 2);
-    }
+    noFill();
+  beginShape();
+  for (let i = 0; i < tracing_points.length; i++) {
+    let interColor = lerpColor(color(0, 0, 255), color(255, 0, 0), i / (tracing_points.length - 1));
+    stroke(interColor);
+     // Adjust the stroke weight based on the position in the array
+    let weight = map(i, 0, tracing_points.length - 1, 0, 1);
+    strokeWeight(weight);
+    vertex(tracing_points[i].x, tracing_points[i].y);
+  }
+  endShape();
+  noStroke(); // reset stroke to default for other elements
 }
 
 function change_tracing_circles() {
