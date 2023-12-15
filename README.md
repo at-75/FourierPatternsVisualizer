@@ -11,7 +11,7 @@ Buttons are created for triggering random visualizations and changing colors.
 ## Sample Images:
 
 ![Image 1](https://github.com/at-75/FourierPatternsVisualizer/blob/at-75-patch-1/sample_images/img1.png)
-![Image 2](https://github.com/at-75/FourierPatternsVisualizer/blob/at-75-patch-1/sample_images/img2.png)
+![Image 2](https://github.com/at-75/FourierPatternsVisualizer/blob/at-75-patch-1/sample_images/img1_2.png)
 
 # Vector Visualization
 
