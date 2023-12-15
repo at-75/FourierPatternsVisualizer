@@ -1,10 +1,9 @@
 # FourierPatternsVisualizer
+
 Generates interesting random patterns from Fourier Vectors. Written in P5.js
 Canvas size is set to 700x700 pixels.
 The frame rate is set to 60 frames per second.
 Buttons are created for triggering random visualizations and changing colors.
-
-
 
 ## Weblink : https://at-75.github.io/FourierPatternsVisualizer/
 
@@ -48,3 +47,4 @@ This Processing script generates a dynamic visualization of vectors and their tr
 5. `draw_tracing_points()`: Draws circles at tracing points with colors interpolated between `startColor` and `endColor`.
 6. `change_tracing_circles()`: Changes the colors for visualizing vector traces and triggers a new random vector setup.
 7. `draw()`: Main draw function that handles the overall visualization, including vector lines, tracing points, and angle increments.
+
