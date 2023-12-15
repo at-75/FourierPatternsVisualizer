@@ -1,4 +1,4 @@
-# FourierPatternsVisualizer
+# Fourier Patterns Visualizer
 
 Generates interesting random patterns from Fourier Vectors. Written in P5.js
 Canvas size is set to 700x700 pixels.
